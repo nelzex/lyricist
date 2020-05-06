@@ -20,14 +20,20 @@ searchBtn.addEventListener('click',() =>{
 
 
 async function getLyrics(artist,title){
-    const res = await fetch (`${proxy}${url}${artist}/${title}`,{
-        headers:{
-            origin:'https://lyricism.herokuapp.com/'
-        }
-    });
-    const data = await res.json();
-
-    showLyrics(data);
+    try{
+        const res = await fetch (`${proxy}${url}${artist}/${title}`,{
+            headers:{
+                origin:'https://lyricism.herokuapp.com/'
+            }
+        });
+        const data = await res.json();
+    
+        showLyrics(data);
+    }
+    catch(err){
+        throw err;
+    }
+    
 }
 
 function showLyrics(data){
